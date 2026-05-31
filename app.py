@@ -26,10 +26,7 @@ _authenticator = stauth.Authenticate(
     _cfg["credentials"], _cfg["cookie"]["name"],
     _cfg["cookie"]["key"], _cfg["cookie"]["expiry_days"]
 )
-try:
-    _name, _auth_status, _username = _authenticator.login(location="main")
-except Exception:
-    _name, _auth_status, _username = _authenticator.login("Login", "main")
+_name, _auth_status, _username = _authenticator.login("main")
 
 if _auth_status is False:
     st.error("❌ Incorrect username or password. Please try again.")
