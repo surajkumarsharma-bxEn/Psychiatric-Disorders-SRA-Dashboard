@@ -1,8 +1,8 @@
 credentials:
   usernames:
     suraj:
-      name: Suraj Kumar
-      email: suraj@abbvie.com
+      name: Suraj Sharma
+      email: suraj.sharma@abbvie.com
       password: "$2b$12$iDclnnqxlwmsFdXQVz0HmOm6TLz0PLBwBQC1fz/hBGxLtTP4Kqglu"   # suraj123
     nischal:
       name: Nischal

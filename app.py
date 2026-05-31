@@ -504,7 +504,7 @@ elif mode == "🔍 Study Explorer":
                                 # Normalize gender to lowercase for colors
                                 df_samp['gender'] = df_samp['gender'].astype(str).str.lower()
                                 fig2 = px.pie(df_samp, names='gender', title='Gender', hole=0.4, color_discrete_sequence=['#60a5fa', '#f472b6', '#a78bfa', '#cbd5e1'])
-                                fig2.update_traces(textposition='inside', textinfo='label+value+percent')
+                                fig2.update_traces(textposition='inside', textinfo='label+value')
                                 fig2.update_layout(paper_bgcolor='rgba(0,0,0,0)', font_color='#e2e8f0', margin=dict(t=30,b=10), showlegend=True)
                                 st.plotly_chart(fig2, use_container_width=True)
                     
