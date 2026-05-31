@@ -429,7 +429,7 @@ elif mode == "🔍 Study Explorer":
         """, unsafe_allow_html=True)
 
         # Tabs
-        tab1, tab_samp, tab2, tab3, tab4, tab5 = st.tabs(["📝 Sample Sheet", "👥 Sample Info", "🖥️ Slides", "📋 Full Metadata", "📊 Summary Tracker", "🔧 Pipeline Info"])
+        tab1, tab2, tab3, tab4, tab5 = st.tabs(["📝 Sample Sheet", "🖥️ Slides", "📋 Full Metadata", "📊 Summary Tracker", "🔧 Pipeline Info"])
 
         with tab1:
             df_ss = pd.read_sql("SELECT sample_id, fastq_1, fastq_2, strandedness FROM sample_sheets WHERE study_id=?",
@@ -480,44 +480,6 @@ elif mode == "🔍 Study Explorer":
                                    mime="text/csv")
             else:
                 st.warning(f"No sample sheet loaded for {sel_id}.")
-
-        with tab_samp:
-            st.markdown("### 👥 Sample Demographics & Info")
-            try:
-                df_samp = pd.read_sql("SELECT run_accession, sample_title, organism_name, disease_status, gender, tissue, cell_type, cell_line, source_name, age, treatment FROM sample_metadata WHERE study_accession=?", conn, params=[sel_id])
-                
-                if not df_samp.empty:
-                    # Clean up empty strings with None
-                    df_samp = df_samp.replace('', pd.NA).dropna(axis=1, how='all')
-                    
-                    # Show charts if disease_status exists
-                    if 'disease_status' in df_samp.columns and not df_samp['disease_status'].isna().all():
-                        c1, c2 = st.columns(2)
-                        with c1:
-                            fig = px.pie(df_samp, names='disease_status', title='Disease Status', hole=0.4, color_discrete_sequence=px.colors.qualitative.Pastel)
-                            fig.update_layout(paper_bgcolor='rgba(0,0,0,0)', font_color='#e2e8f0', margin=dict(t=30,b=10))
-                            st.plotly_chart(fig, use_container_width=True)
-                        
-                        if 'gender' in df_samp.columns and not df_samp['gender'].isna().all():
-                            with c2:
-                                # Normalize gender to lowercase for colors
-                                df_samp['gender'] = df_samp['gender'].astype(str).str.lower()
-                                fig2 = px.pie(df_samp, names='gender', title='Gender', hole=0.4, color_discrete_sequence=['#60a5fa', '#f472b6', '#a78bfa', '#cbd5e1'])
-                                fig2.update_layout(paper_bgcolor='rgba(0,0,0,0)', font_color='#e2e8f0', margin=dict(t=30,b=10))
-                                st.plotly_chart(fig2, use_container_width=True)
-                    
-                    s_samp = st.text_input("🔍 Search Sample Info", key="search_samp")
-                    disp_samp = df_samp[df_samp.astype(str).apply(lambda x: x.str.contains(s_samp, case=False, na=False)).any(axis=1)] if s_samp else df_samp
-                    st.dataframe(disp_samp, use_container_width=True)
-                    
-                    st.download_button("📥 Download Sample Info (.csv)",
-                                       df_samp.to_csv(index=False).encode(),
-                                       file_name=f"{sel_id}_sample_metadata.csv",
-                                       mime="text/csv")
-                else:
-                    st.info("⚠️ No detailed sample metadata available for this study in the database.")
-            except Exception as e:
-                st.error(f"Could not load sample metadata: {e}")
 
         with tab2:
             st.markdown("#### 🖥️ Presentations & Summary Slides")
