@@ -495,7 +495,8 @@ elif mode == "🔍 Study Explorer":
                         c1, c2 = st.columns(2)
                         with c1:
                             fig = px.pie(df_samp, names='disease_status', title='Disease Status', hole=0.4, color_discrete_sequence=px.colors.qualitative.Pastel)
-                            fig.update_layout(paper_bgcolor='rgba(0,0,0,0)', font_color='#e2e8f0', margin=dict(t=30,b=10))
+                            fig.update_traces(textposition='inside', textinfo='label+value+percent')
+                            fig.update_layout(paper_bgcolor='rgba(0,0,0,0)', font_color='#e2e8f0', margin=dict(t=30,b=10), showlegend=True)
                             st.plotly_chart(fig, use_container_width=True)
                         
                         if 'gender' in df_samp.columns and not df_samp['gender'].isna().all():
@@ -503,7 +504,8 @@ elif mode == "🔍 Study Explorer":
                                 # Normalize gender to lowercase for colors
                                 df_samp['gender'] = df_samp['gender'].astype(str).str.lower()
                                 fig2 = px.pie(df_samp, names='gender', title='Gender', hole=0.4, color_discrete_sequence=['#60a5fa', '#f472b6', '#a78bfa', '#cbd5e1'])
-                                fig2.update_layout(paper_bgcolor='rgba(0,0,0,0)', font_color='#e2e8f0', margin=dict(t=30,b=10))
+                                fig2.update_traces(textposition='inside', textinfo='label+value+percent')
+                                fig2.update_layout(paper_bgcolor='rgba(0,0,0,0)', font_color='#e2e8f0', margin=dict(t=30,b=10), showlegend=True)
                                 st.plotly_chart(fig2, use_container_width=True)
                     
                     s_samp = st.text_input("🔍 Search Sample Info", key="search_samp")
