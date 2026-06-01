@@ -177,6 +177,24 @@ st.sidebar.markdown(f"**🏷️ Disease Categories** `{n_kw}`")
 if mode == "📊 Overview & Analytics":
     st.markdown("## 📈 Overview & Analytics")
 
+    # Top-level processing summary
+    st.markdown("""
+    <div style="display:flex;gap:1.5rem;flex-wrap:wrap;margin-bottom:1.8rem;padding:1.2rem 1.5rem;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:12px;">
+      <div style="flex:1;border-right:1px solid rgba(255,255,255,0.05);">
+        <span style="font-size:.8rem;color:#9ca3af;text-transform:uppercase;letter-spacing:1px;">Total Datasets</span><br>
+        <strong style="font-size:1.8rem;color:#f1f5f9;">82</strong>
+      </div>
+      <div style="flex:1;border-right:1px solid rgba(255,255,255,0.05);">
+        <span style="font-size:.8rem;color:#9ca3af;text-transform:uppercase;letter-spacing:1px;">BE Complete</span><br>
+        <strong style="font-size:1.8rem;color:#6ee7b7;">42</strong>
+      </div>
+      <div style="flex:1;">
+        <span style="font-size:.8rem;color:#9ca3af;text-transform:uppercase;letter-spacing:1px;">Artemis Complete</span><br>
+        <strong style="font-size:1.8rem;color:#a5b4fc;">34</strong>
+      </div>
+    </div>
+    """, unsafe_allow_html=True)
+
     # Metric cards
     st.markdown(f"""
     <div class="cards">
@@ -429,7 +447,7 @@ elif mode == "🔍 Study Explorer":
         """, unsafe_allow_html=True)
 
         # Tabs
-        tab1, tab_samp, tab2, tab3, tab4, tab5 = st.tabs(["📝 Sample Sheet", "👥 Sample Info", "🖥️ Slides", "📋 Full Metadata", "📊 Summary Tracker", "🔧 Pipeline Info"])
+        tab1, tab_samp, tab2, tab3, tab4, tab5 = st.tabs(["📝 Sample Sheet", "👥 Sample Info", "🖥️ Slides", "📋 Full Metadata", "📊 Execution Stats", "🔧 Analysis Info"])
 
         with tab1:
             df_ss = pd.read_sql("SELECT sample_id, fastq_1, fastq_2, strandedness FROM sample_sheets WHERE study_id=?",

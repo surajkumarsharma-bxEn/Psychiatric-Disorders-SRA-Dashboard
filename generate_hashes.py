@@ -8,8 +8,8 @@ Usage:
 import streamlit_authenticator as stauth
 
 # Add your users' plain-text passwords here
-usernames  = ["suraj",   "nischal",   "admin"]
-passwords  = ["suraj123", "nischal123", "abbvie2024"]
+usernames  = ["suraj",   "nischal",   "admin" ,"abv01"]
+passwords  = ["suraj123", "nischal123", "abbvie2024", "Ab01Psy@82"]
 
 hashed = stauth.Hasher(passwords).generate()
 

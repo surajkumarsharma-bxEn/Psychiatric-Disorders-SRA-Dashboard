@@ -6,12 +6,16 @@ credentials:
       password: "$2b$12$iDclnnqxlwmsFdXQVz0HmOm6TLz0PLBwBQC1fz/hBGxLtTP4Kqglu"   # suraj123
     nischal:
       name: Nischal
-      email: nischal@abbvie.com
+      email: nischal.gupta@abbvie.com
       password: "$2b$12$5sJlOSTzfiZd4qNXLBQYb.aFAZI9iW5VofqxAezgUTYY8idS.qZBC"  # nischal123
     admin:
       name: Admin
       email: admin@abbvie.com
       password: "$2b$12$nDarbt9WmUsMyeRSWW8VH.A6SnYzVBfxiNBCI7SDCZQkMvOJY0uTG"  # abbvie2024
+    abv01:
+      name: ABV01
+      email: abv01@abbvie.com
+      password: "$2b$12$KOBZOex.UlY1fyXYZgtmouNtzaJwi5PxJ0v5coFjc4HRUKnVFJ.mu"  # Ab01Psy@82
 
 cookie:
   name: sra_dashboard_auth
